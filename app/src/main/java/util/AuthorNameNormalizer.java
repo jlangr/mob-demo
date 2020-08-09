@@ -1,22 +1,38 @@
 package util;
 
-
 public class AuthorNameNormalizer {
+    private String[] parts;
 
-    // hints:
-    // - You might try RegEx replace but things might get ugly...
-    // - The String method split is useful.
-    // - You might find the code simpler later if you use a LinkedList instead of an array.
-
-
-    public String normalize(String string) {
-        throw new RuntimeException("not yet implemented");
+    public String normalize(String name) {
+        parts = name.split(" ");
+        if (isMononym())
+            return formatMononym();
+        return formatDuonym();
     }
 
-    // See http://stackoverflow.com/questions/275944/java-how-do-i-count-the-number-of-occurrences-of-a-char-in-a-string
-    // ... if you need to convert to < Java 8
-   /* private */ long count(String string, char c) {
-        return string.chars().filter(ch -> ch == c).count();
+    private String formatMononym() {
+        return first();
     }
+
+    private String formatDuonym() {
+        return last() + ", "+ first();
+    }
+
+    private String last() {
+        return parts[1];
+    }
+
+    private String first() {
+        return parts[0];
+    }
+
+    private boolean isMononym() {
+        return parts.length == 1;
+    }
+
+    // this might be useful...
+//    long count(String string, char c) {
+//        return string.chars().filter(ch -> ch == c).count();
+//    }
 }
 
