@@ -29,7 +29,6 @@ public class AnAuthorNameNormalizer {
       assertThat(normalizer.normalize("Haruki Murakami")).isEqualTo("Murakami, Haruki");
     }
 
-    @Ignore
     @Test
     public void trimsLeadingAndTrailingWhitespace() {
         assertThat(normalizer.normalize("  Big Boi   ")).isEqualTo("Boi, Big");
